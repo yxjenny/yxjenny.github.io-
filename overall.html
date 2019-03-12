@@ -1,0 +1,182 @@
+<!doctype html>
+<!--overall.html-->
+<html>
+<head>
+	<title>Overall</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	<script type="text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>		
+	<script type="text/javascript">
+	//load the google API
+	google.charts.load('current',{'packages':['corechart']});
+	
+	//load the callback function to run when API is loaded.
+	google.charts.setOnLoadCallback(drawAllCharts);
+	
+	//drawAllCharts function 
+	function drawAllCharts() {
+		drawSheetName('Education','SELECT A,B,C,D,E,F',
+						educationSpendingResponseHandler);
+		
+		drawSheetName('Healthcare', 'SELECT A,B,C,D,E',
+						healthcareSpendingResponseHandler);
+		
+		drawSheetName('MS', 'SELECT A,B,C,D,E,F',
+						militarySpendingResponseHandler);
+		drawSheetName('totalEvstotalME', 'SELECT A,B,C',
+					totalEducationMilitarySpendingResponseHandler);
+		drawSheetName('totalHvstotalME', 'SELECT A,B,C',
+					totalHealthcareMilitarySpendingResponseHandler);
+						
+	}
+					
+	function drawSheetName(sheetName, query, responseHandler) {
+		var queryString = encodeURIComponent(query);
+		var query = new google.visualization.Query(
+		'https://docs.google.com/spreadsheets/d/1WTg98yl2oZ1yS1oocjyOqMWIWZFr9q_qra0Bge_8zKM/gviz/tq?sheet=' +
+		sheetName + '&headers=1&tq='  + queryString);
+		
+		query.send(responseHandler);
+	
+	}
+	
+	function educationSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		data.sort({column:2, desc:true});
+		var options = {
+						height:400,
+						vAxis:{title:'Spendind in Billions($)'},
+						hAxis:{title:'Country'},
+		};
+		
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('education_spending_div'));
+			
+		chart.draw(data,options);
+	}
+	
+	function healthcareSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		data.sort({column:4, desc:true});
+		var options = {
+						height:400,
+						vAxis:{title:'Spendind in Billions($)'},
+						hAxis:{title:'Country'},
+		};
+		
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('healthcare_spending_div'));
+			
+		chart.draw(data,options);
+	
+	}
+	
+	function militarySpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		data.sort({column:5, desc:true});
+		var options = {
+						height:400,
+						vAxis:{title:'Spendind in Billions($)'},
+						hAxis:{title:'Country'},
+		};
+		
+		var chart = new google.visualization.ColumnChart(
+			document.getElementById('military_spending_div'));
+			
+		chart.draw(data,options);
+	
+	}
+	
+	function totalEducationMilitarySpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		data.sort({column:1, desc:true});
+		var options = {
+					height:400,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Total Military Spending vs Total Education(2012-2016)',
+					vAxis:{title:'Country'},
+					hAxis:{title:'Spending in Billions($)'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'total_education_military_spending_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function totalHealthcareMilitarySpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		data.sort({column:1, desc:true});
+		var options = {
+					height:400,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Total Health Care Spending vs Total Education(2012-2016)',
+					vAxis:{title:'Country'},
+					hAxis:{title:'Spending in Billions($)'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'total_healthcare_military_spending_div'));
+				
+	chart.draw(data,options);
+	}
+	</script>	
+</head>
+
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>G20 Individual Project 1 YX</h1>
+				</div><!-- logo_text -->
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Introduction</a></li>
+					<li class="selected"><a href="overall.html">Overall</a></li>
+					<li><a href="individual.html">Within Each Countries</a></li>
+					<li><a href="percapita.html">Per Person Analysis</a></li>
+					<li><a href="fastest.html">Fastest Growing Countries</a></li>
+				</ul>
+			</div><!-- menubar -->
+		</div><!-- header -->
+	</div>
+	<div id="frontpage_content">
+	<h2>Education Analysis of G20 Countries</h2>
+		<p>China, Canada, and Saudi Arabia have no education spending data from 2012 to 2016. United States spent the most on education.</p>
+	<div id="education_spending_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Healthcare Analysis of G20 Countries</h2>
+		<p>All the countries have no health care data on 2016. United States spent the most on health care from 2012 to 2015.</p>
+	<div id="healthcare_spending_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Military Spending Analysis of G20 Countries</h2>
+		<p>United States spent the most on military from 2012 to 2016 among all the G20 Countries.</p>
+	<div id="military_spending_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Total Education vs Total Military Spending of G20 Countries</h2>
+		<p>United States is the only G20 country that spend more on military than education.</p>
+	<div id="total_education_military_spending_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Total Health Care Spending vs Total Military Spending of G20 Countries</h2>
+		<p>United States Spent the most on health care from 2012 to 2015</p>
+	<div id="total_healthcare_military_spending_div"
+		style="width:100%; height:500px;"></div>
+	</div>
+	<div id="content_footer">
+			<div id="footer">
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+				| <a href="#">HTML5</a> | <a href="#">CSS</a> | <a href="#">Yining Xie</a>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

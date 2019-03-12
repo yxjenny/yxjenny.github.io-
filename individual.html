@@ -1,0 +1,852 @@
+<!doctype html>
+<!--individual.html-->
+<html>
+<head>
+<meta name="viewpoint" content="width=device-width,inicial-scale=1">
+	<title>Individual</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	<script type="text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>		
+	<script type="text/javascript">
+	
+	//load the google API
+	google.charts.load('current',{'packages':['corechart']});
+	
+	//load the callback function to run when API is loaded.
+	google.charts.setOnLoadCallback(drawAllCharts);
+	
+	//drawAllCharts function
+	function drawAllCharts() {
+		drawSheetName('EvsG','SELECT A,B,C',
+					UseducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT D,E,F',
+					TueducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT G,H,I',
+					AuseducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT J,K,L',
+					BreducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT M,N,O',
+					FreducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT P,Q,R',
+					GeeducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT S,T,U',
+					UkeducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT V,W,X',
+					KoeducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT Y,Z,AA' ,
+					IndoeducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT AB,AC,AD' ,
+					MexeducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT AE,AF,AG' ,
+					SaeducationvsGDPSpendingResponseHandler);
+		drawSheetName('EvsG','SELECT AH,AI,AJ' ,
+					AreducationvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT A,B,C',
+					UshealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT D,E,F',
+					ChhealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT G,H,I',
+					AushealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT J,K,L',
+					BrhealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT M,N,O',
+					FrhealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT P,Q,R',
+					GehealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT S,T,U',
+					UkhealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT V,W,X',
+					JahealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT Y,Z,AA' ,
+					IndohealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT AB,AC,AD' ,
+					IthealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT AE,AF,AG' ,
+					RuhealthvsGDPSpendingResponseHandler);
+		drawSheetName('HvsG','SELECT AH,AI,AJ' ,
+					KohealthvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT A,B,C' ,
+					UsmilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT D,E,F' ,
+					ChmilitaryvsGDPSpendingResponseHandler);	
+		drawSheetName('MvsG','SELECT G,H,I' ,
+					SamilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT J,K,L' ,
+					BrmilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT M,N,O' ,
+					FrmilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT P,Q,R' ,
+					GemilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT S,T,U' ,
+					UkmilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT V,W,X' ,
+					JamilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT Y,Z,AA' ,
+					InmilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT AB,AC,AD' ,
+					ItmilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT AE,AF,AG' ,
+					RumilitaryvsGDPSpendingResponseHandler);
+		drawSheetName('MvsG','SELECT AH,AI,AJ' ,
+					KomilitaryvsGDPSpendingResponseHandler);
+		
+	}
+	
+	function drawSheetName(sheetName, query, responseHandler) {
+		var queryString = encodeURIComponent(query);
+		var query = new google.visualization.Query(
+		'https://docs.google.com/spreadsheets/d/1WTg98yl2oZ1yS1oocjyOqMWIWZFr9q_qra0Bge_8zKM/gviz/tq?sheet=' +
+		sheetName + '&headers=1&tq='  + queryString);
+		
+		query.send(responseHandler);
+	
+	}
+	
+	function UseducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'United State Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('usevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function TueducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Turkey Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('tuevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function AuseducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Australia Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('auevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function BreducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Brazil Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('brevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function FreducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'France Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('frevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function GeeducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Germany Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('geevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function UkeducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Germany Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('ukevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function KoeducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Korea Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('koevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function IndoeducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Indonesia Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('indoevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function MexeducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Mexico Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('mexevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function SaeducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'South Africa Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('saevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function AreducationvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		//data.sort({column:1,desc:true});//
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Argentina Education Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('arevsgdp_div'));
+		
+		chart.draw(data, options); //change data to view
+	}
+	
+	function UshealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'United State Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('ushvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function ChhealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'China Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('chhvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function AushealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Australia Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('aushvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function BrhealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Brazil Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('brhvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function FrhealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'France Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('frhvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function GehealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Germany Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('gehvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function UkhealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'United Kingdom Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('ukhvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function JahealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Japan Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('jahvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function IndohealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Indonesia Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('indohvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function IthealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Italy Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('ithvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function RuhealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Russia Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('ruhvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function KohealthvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Korea Healthcare Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}
+					
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('kohvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function UsmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'United States Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('usmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function ChmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'China Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('chmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function SamilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Saudi Arabia Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('samvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function BrmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Brazil Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('brmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function FrmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'France Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('frmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function GemilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Germany Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('gemvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function UkmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'United Kingdom Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('ukmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function JamilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Japan Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('jamvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function InmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'India Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('inmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function ItmilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Italy Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('itmvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function RumilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Russia Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('rumvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	function KomilitaryvsGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		var options = {
+					height:400,
+					width: 800,
+					title:'Korea Military Spending vs GDP in 5 years',
+					curveType:'function',
+					legend:{position:'bottom'}		
+		};
+		var chart = new google.visualization.LineChart(document.getElementById('komvsgdp_div'));
+		
+		chart.draw(data, options); 
+	}
+	
+	
+	
+	
+
+	</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>G20 Individual Project 1 YX</h1>
+				</div><!-- logo_text -->
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Introduction</a></li>
+					<li><a href="overall.html">Overall</a></li>
+					<li class="selected"><a href="individual.html">Within Each Countries</a></li>
+					<li><a href="percapita.html">Per Person Analysis</a></li>
+					<li><a href="fastest.html">Fastest Growing Countries</a></li>
+				</ul>
+			</div><!-- menubar -->
+		</div><!-- header -->
+	
+	<div id="frontpage_content">
+	<button class="collapsible">Education Spending to the country's GDP</button>
+	<div class="content">
+	<h2>United States Education Analysis of G20 Countries</h2>
+	<div id="usevsgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Turkey Education vs GDP of G20 Countries</h2>
+	<div id="tuevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Australia Education vs GDP of G20 Countries</h2>
+	<div id="auevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Brazil Education vs GDP of G20 Countries</h2>
+	<div id="brevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>France Education vs GDP of G20 Countries</h2>
+	<div id="frevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Germany Education vs GDP of G20 Countries</h2>
+	<div id="geevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Uk Education vs GDP of G20 Countries</h2>
+	<div id="ukevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Korea Education vs GDP of G20 Countries</h2>
+	<div id="koevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Indonesia Education vs GDP of G20 Countries</h2>
+	<div id="indoevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Mexico Education vs GDP of G20 Countries</h2>
+	<div id="mexevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>South Africa Education vs GDP of G20 Countries</h2>
+	<div id="saevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Argentina Education vs GDP of G20 Countries</h2>
+	<div id="arevsgdp_div"
+		style="width:100%; height:500px;"></div>
+	</div>
+	<button class="collapsible">Healthcare Spending to that country's GDP</button>
+	<div class="content">
+	<h2>United States Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="ushvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>China Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="chhvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Australia Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="aushvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Brazil Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="brhvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>France Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="frhvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Germany Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="gehvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>United Kingdom Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="ukhvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Japan Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="jahvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Indonesia Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="indohvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Italy Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="ithvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Russia Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="ruhvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Korea Healthcare Spending vs GDP of G20 Countries</h2>
+	<div id="kohvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	</div>
+	<button class="collapsible">Military Spending to that country's GDP</button>
+	<div class="content">
+	<h2>United States Military Spending vs GDP of G20 Countries</h2>
+	<div id="usmvsgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>China Military Spending vs GDP of G20 Countries</h2>
+	<div id="chmvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Saudi Aarabia Military Spending vs GDP of G20 Countries</h2>
+	<div id="samvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Brazil Military Spending vs GDP of G20 Countries</h2>
+	<div id="brmvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>France Military Spending vs GDP of G20 Countries</h2>
+	<div id="frmvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Germany Military Spending vs GDP of G20 Countries</h2>
+	<div id="gemvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>United Kingdom Military Spending vs GDP of G20 Countries</h2>
+	<div id="ukmvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Japan Military Spending vs GDP of G20 Countries</h2>
+	<div id="jamvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>India Military Spending vs GDP of G20 Countries</h2>
+	<div id="inmvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Italy Military Spending vs GDP of G20 Countries</h2>
+	<div id="itmvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Ru Military Spending vs GDP of G20 Countries</h2>
+	<div id="rumvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Korea Military Spending vs GDP of G20 Countries</h2>
+	<div id="komvsgdp_div"
+		style="width:100%; height:500px;"></div>
+	</div>
+	<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+	</div>
+	
+</div>
+<div id="content_footer">
+			<div id="footer">
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+				| <a href="#">HTML5</a> | <a href="#">CSS</a> | <a href="#">Yining Xie</a>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>

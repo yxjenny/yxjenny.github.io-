@@ -1,0 +1,1119 @@
+<!doctype html>
+<!--individual.html-->
+<html>
+<head>
+<!--<meta name="viewpoint" content="width=device-width,inicial-scale=1">-->
+	<title>Per Capita</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	<script type="text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>		
+	<script type="text/javascript">
+	
+	//load the google API
+	google.charts.load('current',{'packages':['corechart']});
+	
+	//load the callback function to run when API is loaded.
+	google.charts.setOnLoadCallback(drawAllCharts);
+	
+	function drawAllCharts() {
+		drawSheetName('ppevspgdp','SELECT A,B,C',
+					UspevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT D,E,F',
+					AuspevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT G,H,I',
+					TupevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT J,K,L',
+					BrpevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT M,N,O',
+					FrpevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT P,Q,R',
+					GepevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT S,T,U',
+					UkpevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT V,W,X',
+					JapevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT Y,Z,AA' ,
+					IndopevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT AB,AC,AD' ,
+					ItpevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT AE,AF,AG' ,
+					MexpevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT AH,AI,AJ' ,
+					KopevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT AK,AL,AM' ,
+					SoapevspGDPSpendingResponseHandler);
+		drawSheetName('ppevspgdp','SELECT AN,AO,AP' ,
+					ArpevspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT A,B,C',
+					UspphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT D,E,F',
+					AuspphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT G,H,I',
+					ChpphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT J,K,L',
+					BrpphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT M,N,O',
+					FrpphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT P,Q,R',
+					GepphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT S,T,U',
+					UkpphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT V,W,X',
+					JapphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT Y,Z,AA' ,
+					RupphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT AB,AC,AD' ,
+					ItpphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT AE,AF,AG' ,
+					CapphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT AH,AI,AJ' ,
+					KopphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT AK,AL,AM' ,
+					SapphealthvspGDPSpendingResponseHandler);
+		drawSheetName('pphvspgdp','SELECT AN,AO,AP' ,
+					InpphealthvspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT A,B,C' ,
+					UsppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT D,E,F' ,
+					AusppmevspGDPSpendingResponseHandler);	
+		drawSheetName('ppmevspgdp','SELECT G,H,I' ,
+					ChppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT J,K,L' ,
+					BrppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT M,N,O' ,
+					FrppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT P,Q,R' ,
+					GeppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT S,T,U' ,
+					UkppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT V,W,X' ,
+					JappmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT Y,Z,AA' ,
+					RuppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT AB,AC,AD' ,
+					ItppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT AE,AF,AG' ,
+					CappmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT AH,AI,AJ' ,
+					KoppmevspGDPSpendingResponseHandler);
+		drawSheetName('ppmevspgdp','SELECT AK,AL,AM' ,
+					SappmevspGDPSpendingResponseHandler);
+	}
+	
+	function drawSheetName(sheetName, query, responseHandler) {
+		var queryString = encodeURIComponent(query);
+		var query = new google.visualization.Query(
+		'https://docs.google.com/spreadsheets/d/1WTg98yl2oZ1yS1oocjyOqMWIWZFr9q_qra0Bge_8zKM/gviz/tq?sheet=' +
+		sheetName + '&headers=1&tq='  + queryString);
+		
+		query.send(responseHandler);
+	
+	}
+	
+	function UspevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for United States(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'},				
+
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'usppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function AuspevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Australia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ausppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function TupevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Turkey(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'tuppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function BrpevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Brazil(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'brppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function FrpevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for France(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'frppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function GepevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Germany(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'geppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function UkpevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for United Kingdom(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ukppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function JapevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Japan(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'jappe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function IndopevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Indonesia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'indoppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function ItpevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Italy(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'itppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function MexpevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Mexico(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'mexppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function KopevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Korea(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'koppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function SoapevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for South Africa(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'soappe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function ArpevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Education Spending vs Per capita GDP for Argentina(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'arppe_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function UspphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for United States(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'uspph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function AuspphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Australia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'auspph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function ChpphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for China(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'chpph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function BrpphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Brazil(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'brpph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function FrpphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for France(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'frpph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function GepphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Germany(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'gepph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function UkpphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for United Kingdom(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ukpph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function JapphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Japan(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'japph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function RupphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Russia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'rupph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function ItpphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Italy(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'itpph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function CapphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Canada(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'capph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function KopphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Korea(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'kopph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function SapphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for Saudi Arabia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'sapph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function InpphealthvspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Health Care Spending vs Per capita GDP for India(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'inpph_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function UsppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for United States(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'us_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function AusppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Australia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'aus_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function ChppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for China(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ch_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function BrppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Brazil(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'br_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function FrppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for France(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'fr_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function GeppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Germany(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ge_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function UkppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for United Kingdom(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'uk_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function JappmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Japan(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ja_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function RuppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Russia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ru_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function ItppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Italy(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'it_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function CappmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Canada(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ca_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function KoppmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Korea(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'ko_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	function SappmevspGDPSpendingResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					height:400,
+					width: 800,
+					legend:'none',
+					bars:'horizontal',
+					annotations:{alwaysOutside:true},
+					title:'Per capita Military Spending vs Per capita GDP for Saudi Arabia(2012-2016)',
+					vAxis:{title:'Year'},
+					hAxis:{title:'Spending'}			
+	
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'sa_ppme_pgdp_div'));
+				
+	chart.draw(data,options);
+	}
+	
+	</script>
+</head>
+
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>G20 Individual Project 1 YX</h1>
+				</div><!-- logo_text -->
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Introduction</a></li>
+					<li><a href="overall.html">Overall</a></li>
+					<li><a href="individual.html">Within Each Countries</a></li>
+					<li class="selected"><a href="percapita.html">Per Person Analysis</a></li>
+					<li><a href="fastest.html">Fastest Growing Countries</a></li>
+				</ul>
+			</div><!-- menubar -->
+		</div><!-- header -->
+	
+	<div id="frontpage_content">
+	<button class="collapsible">Per capita Education Spending vs Per capita GDP of G20 Countries</button>
+	<div class="content">
+	<h2>United States Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="usppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Australia Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="ausppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Turkey Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="tuppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Brazil Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="brppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>France Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="frppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Germany Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="geppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>United Kingdom Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="ukppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Japan Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="jappe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Indonesia Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="indoppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Italy Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="itppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Mexico Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="mexppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Korea Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="koppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>South Africa Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="soappe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	<h2>Argentinas Per capita Education vs Per capita GDP(2012-2016)</h2>
+	<div id="arppe_pgdp_div"
+		style="width:1000px; height:50%;"></div>
+	</div>
+	<button class="collapsible">Per Capita Healthcare Spending to Per Capita GDP of G20 Countries</button>
+	<div class="content">
+	<h2>United States per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="uspph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Australia per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="auspph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>China per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="chpph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Brazil per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="brpph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>France per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="frpph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Germany per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="gepph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>United Kingdom per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="ukpph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Japan per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="japph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Russia per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="rupph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Italy per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="itpph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Canada per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="capph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Korea per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="kopph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>Saudi Arabia per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="sapph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	<h2>India per person Healthcare Spending vs per personGDP (2012-2016)</h2>
+	<div id="inpph_pgdp_div"
+		style="width:100%; height:500px;"></div>
+	</div>
+	<button class="collapsible">Per Capita Military Spending vs Per Capita GDP of G20 Countries </button>
+	<div class="content">
+	<h2>United States Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="us_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Australia Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="aus_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>China Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="ch_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Brazil Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="br_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>France Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="fr_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Germany Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="ge_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>United Kingdom Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="uk_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Japan Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="ja_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Russia Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="ru_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Italy Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="it_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Canada Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="ca_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Korea Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="ko_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	<h2>Saudi Arabia Per person Military Spending vs Per person GDP (2012-2016)</h2>
+	<div id="sa_ppme_pgdp_div"
+		style="width:30%; height:30%;"></div>
+	</div>
+	</div>
+	<script>
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+		coll[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+	});
+	}
+</script>
+	</div>
+	
+</div>
+<div id="content_footer">
+			<div id="footer">
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+				| <a href="#">HTML5</a> | <a href="#">CSS</a> | <a href="#">Yining Xie</a>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>
+		
+		
+		

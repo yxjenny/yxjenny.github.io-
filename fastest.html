@@ -1,0 +1,166 @@
+<!doctype html>
+<!--fastest.html-->
+<html>
+<head>
+	<title>Fastest Growing Countries</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css" />
+	<script type="text/javascript"
+			src="https://www.gstatic.com/charts/loader.js"></script>		
+	<script type="text/javascript">
+	//load the google API
+	google.charts.load('current',{'packages':['corechart']});
+	
+	//load the callback function to run when API is loaded.
+	google.charts.setOnLoadCallback(drawAllCharts);
+	
+	//drawAllCharts function 
+	function drawAllCharts() {
+		drawSheetName('FastestE','SELECT A,C',
+						fastestEducationGrowingResponseHandler);
+		drawSheetName('FastestE','SELECT A,D',
+						fastestEducationGrowingPercentResponseHandler);
+		drawSheetName('FastestE','SELECT A,D',
+						fastestEducationGrowingTotalResponseHandler);
+		drawSheetName('FastestH','SELECT A,C',
+						fastestHealthGrowingResponseHandler);
+		drawSheetName('FastestH','SELECT A,D',
+						fastestHealthGrowingPercentResponseHandler);
+		drawSheetName('FastestH','SELECT A,D',
+						fastestHealthGrowingTotalResponseHandler);
+						
+	}
+	
+	function drawSheetName(sheetName, query, responseHandler) {
+		var queryString = encodeURIComponent(query);
+		var query = new google.visualization.Query(
+		'https://docs.google.com/spreadsheets/d/1WTg98yl2oZ1yS1oocjyOqMWIWZFr9q_qra0Bge_8zKM/gviz/tq?sheet=' +
+		sheetName + '&headers=1&tq='  + queryString);
+		
+		query.send(responseHandler);
+	
+	}
+	
+	function fastestEducationGrowingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		data.sort({column:1, desc:true});
+		var chart = new google.visualization.GeoChart(document.getElementById(
+					'fastest_edu_growth_div'));
+					
+		chart.draw(data,{'height':400});
+	}//
+	
+	function fastestEducationGrowingPercentResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		data.sort({column:1, desc:true});
+		var chart = new google.visualization.GeoChart(document.getElementById(
+					'fastest_edu_growth_percent_div'));
+					
+		chart.draw(data,{'height':400});
+	}//
+	
+	function fastestEducationGrowingTotalResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					width: 800,
+					height: 400,
+					legend:{position:'top', maxLines:3},
+					bars: {groupWidth:'75%'},
+					isStacked: true
+		};
+		var chart = new google.visualization.BarChart(document.getElementById(
+					'fastest_edu_growth_total_div'));
+					
+		chart.draw(data,options);
+	} ////Fastest Growing Countries in Education comparing by %
+	
+	function fastestHealthGrowingResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		data.sort({column:1, desc:true});
+		var chart = new google.visualization.GeoChart(document.getElementById(
+					'fastest_hc_growth_div'));
+					
+		chart.draw(data,{'height':400});
+	}//
+	
+	function fastestHealthGrowingPercentResponseHandler(response) {
+		var data = response.getDataTable();
+		
+		data.sort({column:1, desc:true});
+		var chart = new google.visualization.GeoChart(document.getElementById(
+					'fastest_hc_growth_percent_div'));
+					
+		chart.draw(data,{'height':400});
+	}//
+	
+	function fastestHealthGrowingTotalResponseHandler(response) {
+		var data = response.getDataTable();
+		var options = {
+					width: 800,
+					height: 400,
+					legend:{position:'top', maxLines:3},
+					bars: {groupWidth:'75%'},
+					isStacked: true
+		};
+		var chart = new google.visualization.BarChart(document.getElementById(
+					'fastest_hc_growth_total_div'));
+					
+		chart.draw(data,options);
+	} //Fastest Growing Countries in Health Care comparing by %
+	</script>
+</head>
+<body>
+	<div id="main">
+		<div id="header">
+			<div id="logo">
+				<div id="logo_text">
+					<h1>G20 Individual Project 1 YX</h1>
+				</div><!-- logo_text -->
+			</div><!-- logo -->
+			<div id="menubar">
+				<ul id="menu">
+					<li><a href="index.html">Introduction</a></li>
+					<li><a href="overall.html">Overall</a></li>
+					<li><a href="individual.html">Within Each Countries</a></li>
+					<li><a href="percapita.html">Per Person Analysis</a></li>
+					<li class="selected"><a href="fastest.html">Fastest Growing Countries</a></li>
+				</ul>
+			</div><!-- menubar -->
+		</div><!-- header -->
+	</div>
+	<div id="frontpage_content">
+	<h2>Fastest Growing Countries in Education in Fixed Value(2012-2016)</h2>
+	<div id="fastest_edu_growth_div"
+		style="width:900px; height:500px;"></div>
+	<h2>Fastest Growing Countries in Education in %(2012-2016)</h2>
+	<div id="fastest_edu_growth_percent_div"
+		style="width:900px; height:500px;"></div>
+	<h2>Fastest Growing Countries in Education compare(2012-2016)</h2>
+		<p>Korea is the fastest growing country in education.</p>
+	<div id="fastest_edu_growth_total_div"
+		style="width:900px; height:500px;"></div>
+	<h2>Fastest Growing Countries in Health Care in Fixed Value(2012-2016)</h2>
+	<div id="fastest_hc_growth_div"
+		style="width:900px; height:500px;"></div>
+	<h2>Fastest Growing Countries in Health Care in % (2012-2016)</h2>
+	<div id="fastest_hc_growth_percent_div"
+		style="width:900px; height:500px;"></div>
+	<h2>Fastest Growing Countries in Health Care compare (2012-2016)</h2>
+		<p>China is the fastest growing country in health care.</p>
+	<div id="fastest_hc_growth_total_div"
+		style="width:900px; height:500px;"></div>
+	</div>	
+<div id="content_footer">
+			<div id="footer">
+				&copy; <script>var d=new Date(); document.write(d.getFullYear());</script>
+				| <a href="#">HTML5</a> | <a href="#">CSS</a> | <a href="#">Yining Xie</a>
+			</div><!-- footer -->
+		</div><!-- content_footer -->
+	</div><!-- main -->
+</body>
+</html>
+		
+		
+		
